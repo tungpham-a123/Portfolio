@@ -1,3 +1,33 @@
+// --- Custom Cursor ---
+const cursorDot = document.querySelector('[data-cursor-dot]');
+const cursorOutline = document.querySelector('[data-cursor-outline]');
+
+window.addEventListener('mousemove', function(e) {
+    const posX = e.clientX;
+    const posY = e.clientY;
+
+    cursorDot.style.left = `${posX}px`;
+    cursorDot.style.top = `${posY}px`;
+
+    // Add a slight delay to the outline for a trailing effect
+    cursorOutline.animate({
+        left: `${posX}px`,
+        top: `${posY}px`
+    }, { duration: 500, fill: "forwards" });
+});
+
+// Add hover effect to cursor when hovering over links and buttons
+document.querySelectorAll('a, .btn, .project-card').forEach(el => {
+    el.addEventListener('mouseover', () => {
+        cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
+        cursorOutline.style.backgroundColor = 'rgba(100, 255, 218, 0.1)';
+    });
+    el.addEventListener('mouseout', () => {
+        cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
+        cursorOutline.style.backgroundColor = 'transparent';
+    });
+});
+
 // --- Typewriter Effect ---
 const words = ["Backend Developer.", "Java Enthusiast.", "Problem Solver.", "Software Engineer."];
 let i = 0;
@@ -53,6 +83,35 @@ const observer = new IntersectionObserver((entries, observer) => {
         if (entry.isIntersecting) {
             entry.target.style.opacity = 1;
             entry.target.style.transform = 'translateY(0)';
+            
+            // Stagger animation for children using Anime.js
+            const animTargets = entry.target.querySelectorAll('.skill-bar, .project-card, .contact-item, .contact-form input, .contact-form textarea, .contact-form button');
+            if (animTargets.length > 0) {
+                anime({
+                    targets: animTargets,
+                    translateY: [30, 0],
+                    opacity: [0, 1],
+                    easing: 'easeOutElastic(1, .8)',
+                    duration: 1200,
+                    delay: anime.stagger(150) // Stagger by 150ms
+                });
+            }
+
+            // If the section contains progress bars, animate them with Anime.js
+            const progressBars = entry.target.querySelectorAll('.progress');
+            if (progressBars.length > 0) {
+                progressBars.forEach(bar => {
+                    const width = bar.getAttribute('data-width');
+                    anime({
+                        targets: bar,
+                        width: [0, width],
+                        easing: 'easeInOutQuart',
+                        duration: 1500,
+                        delay: 500
+                    });
+                });
+            }
+            
             observer.unobserve(entry.target);
         }
     });
@@ -78,3 +137,132 @@ window.onscroll = function() {
     }
     prevScrollpos = currentScrollPos;
 }
+
+// --- Scroll Cat Animation ---
+const scrollString = document.getElementById('scroll-string');
+const scrollCat = document.getElementById('scroll-cat');
+let isScrolling;
+
+window.addEventListener('scroll', () => {
+    // Calculate scroll percentage
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrollPercent = scrollTop / scrollHeight;
+    
+    // Calculate position based on viewport height
+    // The cat should move from top 0 to bottom 100vh - cat height (approx 120px)
+    const maxScroll = window.innerHeight - 120; 
+    let catPosition = scrollPercent * maxScroll;
+    
+    // Slight offset so the string looks like it's attached to the paw
+    scrollString.style.height = `${catPosition + 10}px`;
+    scrollCat.style.top = `${catPosition}px`;
+
+    // Add wobble effect while scrolling
+    scrollCat.classList.add('cat-wobble');
+
+    // Clear our timeout throughout the scroll
+    window.clearTimeout(isScrolling);
+
+    // Set a timeout to run after scrolling ends
+    isScrolling = setTimeout(function() {
+        scrollCat.classList.remove('cat-wobble');
+    }, 150);
+});
+
+// --- Vanta.js Globe & Initial Page Animations ---
+window.addEventListener('DOMContentLoaded', () => {
+    // Hide initial elements for animation
+    document.querySelector('.greeting').style.opacity = 0;
+    document.querySelector('.summary').style.opacity = 0;
+    document.querySelector('.hero-actions').style.opacity = 0;
+
+    // Split name into letters
+    const nameEl = document.querySelector('.name');
+    nameEl.innerHTML = nameEl.textContent.replace(/\S/g, "<span class='letter' style='display:inline-block'>$&</span>");
+
+    // Vanta Configuration
+    const vantaOptions = {
+        el: "#vanta-bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00,
+        size: 1.20
+    };
+
+    let vantaEffect = null;
+
+    function initVanta(theme) {
+        if (vantaEffect) vantaEffect.destroy();
+        if (theme === 'light') {
+            vantaEffect = VANTA.GLOBE({
+                ...vantaOptions,
+                color: 0x2563eb,
+                color2: 0x2563eb, // Dây nối màu xanh dương đậm
+                backgroundColor: 0xf8fafc
+            });
+        } else {
+            vantaEffect = VANTA.GLOBE({
+                ...vantaOptions,
+                color: 0x64ffda,
+                color2: 0x0070f3,
+                backgroundColor: 0x0a192f
+            });
+        }
+    }
+
+    // Theme Toggle Logic
+    const themeToggle = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme');
+    
+    if (currentTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        themeToggle.checked = true;
+    }
+    
+    // Initialize Vanta with the correct theme
+    initVanta(currentTheme);
+
+    themeToggle.addEventListener('change', function() {
+        if (this.checked) {
+            document.documentElement.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+            initVanta('light');
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'dark');
+            initVanta('dark');
+        }
+    });
+
+    // Run Initial Hero Animation using Anime.js
+    anime.timeline({loop: false})
+    .add({
+        targets: '.greeting',
+        opacity: [0, 1],
+        translateY: [30, 0],
+        easing: "easeOutExpo",
+        duration: 1200,
+        delay: 300
+    })
+    .add({
+        targets: '.name .letter',
+        opacity: [0, 1],
+        translateY: [20, 0],
+        easing: "easeOutElastic(1, .8)",
+        duration: 1200,
+        delay: anime.stagger(50)
+    }, '-=800')
+    .add({
+        targets: '.summary, .hero-actions',
+        opacity: [0, 1],
+        translateY: [20, 0],
+        easing: "easeOutExpo",
+        duration: 1000,
+        delay: anime.stagger(200)
+    }, '-=600');
+});

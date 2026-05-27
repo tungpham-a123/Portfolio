@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phạm Văn Tùng - Software Engineer</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <!-- Background Effects -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">&lt;Tung/&gt;</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact" class="nav-btn">Contact Me</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <p class="greeting">Hello World, I am</p>
+                <h1 class="name">Phạm Văn Tùng</h1>
+                <h2 class="title"><span id="typewriter"></span><span class="cursor">|</span></h2>
+                <p class="summary">Third-year Information Technology student at FPT University. Seeking a Java Backend Intern position to build robust applications and scale solutions.</p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about section">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>I am currently a <strong>third-year Information Technology student</strong> at FPT University Ha Noi, majoring in Software Engineering.</p>
+                    <p>My academic journey has equipped me with a strong foundation in Java, Spring Boot, MVC, SQL, and web application development. I am passionate about backend architecture and always eager to learn new technologies to solve real-world problems.</p>
+                    
+                    <div class="education-card">
+                        <i class="fa-solid fa-graduation-cap edu-icon"></i>
+                        <div>
+                            <h3>FPT University Ha Noi</h3>
+                            <p class="major">Major: Software Engineering</p>
+                            <p class="gpa">GPA: 7.5/10</p>
+                            <p class="awards"><i class="fa-solid fa-award"></i> Good Student Award (Spring 2025, Summer 2025)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="code-window">
+                        <div class="window-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <div class="window-body">
+<pre><code><span class="keyword">class</span> <span class="classname">TungPham</span> {
+  <span class="keyword">constructor</span>() {
+    <span class="this">this</span>.name = <span class="string">"Phạm Văn Tùng"</span>;
+    <span class="this">this</span>.role = <span class="string">"Backend Developer"</span>;
+    <span class="this">this</span>.location = <span class="string">"Ha Noi, VN"</span>;
+  }
+  
+  <span class="function">getObjective</span>() {
+    <span class="keyword">return</span> <span class="string">"Gain practical experience
+      & develop programming skills."</span>;
+  }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills section">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3><i class="fa-solid fa-code"></i> Languages & Frameworks</h3>
+                    <div class="skill-tags">
+                        <span class="tag tech-java">Java</span>
+                        <span class="tag">C</span>
+                        <span class="tag tech-spring">Spring Boot (3.x)</span>
+                        <span class="tag tech-spring">SpringMVC</span>
+                        <span class="tag tech-spring">Spring Data JPA</span>
+                        <span class="tag tech-spring">Spring Security</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3><i class="fa-solid fa-desktop"></i> Frontend</h3>
+                    <div class="skill-tags">
+                        <span class="tag tech-html">HTML5</span>
+                        <span class="tag tech-css">CSS3</span>
+                        <span class="tag tech-js">JavaScript</span>
+                        <span class="tag tech-boot">Bootstrap</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fa-solid fa-database"></i> Database & Tools</h3>
+                    <div class="skill-tags">
+                        <span class="tag tech-sql">SQL Server</span>
+                        <span class="tag tech-git">Git</span>
+                        <span class="tag tech-git">GitHub</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects section">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="project-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <i class="fa-regular fa-folder-open folder-icon"></i>
+                            <div class="project-links">
+                                <a href="https://github.com/kndsxtn/SWP_Final_Project" target="_blank" aria-label="GitHub Link"><i class="fa-brands fa-github"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="project-title">Asset Management System</h3>
+                        <p class="project-desc">A web-based asset management system for a university to manage campus assets, including allocation, transfer between departments, approval workflows, and lifecycle tracking.</p>
+                        <div class="project-role">
+                            <strong>Role:</strong> Backend / Full-Stack Developer
+                        </div>
+                        <ul class="project-features">
+                            <li>Implemented CRUD operations for transfer requests and asset management.</li>
+                            <li>Developed reporting feature to summarize approved purchase requests.</li>
+                            <li>Designed database schema and backend architecture.</li>
+                        </ul>
+                    </div>
+                    <div class="project-tech">
+                        <span>Java</span>
+                        <span>JSP/Servlet</span>
+                        <span>SQL Server</span>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <i class="fa-regular fa-folder-open folder-icon"></i>
+                            <div class="project-links">
+                                <a href="https://github.com/hoabrum/hsf302-se1987-jv-mini-project-group6" target="_blank" aria-label="GitHub Link"><i class="fa-brands fa-github"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="project-title">Online Learning Material Website</h3>
+                        <p class="project-desc">A web-based platform that allows students to upload, search, and download learning materials efficiently.</p>
+                        <div class="project-role">
+                            <strong>Role:</strong> Backend Developer (Authentication)
+                        </div>
+                        <ul class="project-features">
+                            <li>Developed RESTful APIs and CRUD functionalities for account management.</li>
+                            <li>Implemented login/logout and role-based authorization using Spring Security.</li>
+                            <li>Developed admin features for managing user accounts and roles.</li>
+                        </ul>
+                    </div>
+                    <div class="project-tech">
+                        <span>Java</span>
+                        <span>Spring Boot</span>
+                        <span>Spring Security</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact section">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="contact-desc">I'm currently looking for a Java Backend Intern position. Whether you have an opportunity or just want to say hi, my inbox is always open!</p>
+            
+            <div class="contact-info">
+                <a href="mailto:tung39315@gmail.com" class="contact-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>tung39315@gmail.com</span>
+                </a>
+                <a href="tel:0866608210" class="contact-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>0866608210</span>
+                </a>
+                <div class="contact-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Làng Kim Bồng, Tân Xã, Thạch Thất, Hà Nội</span>
+                </div>
+            </div>
+
+            <a href="mailto:tung39315@gmail.com" class="btn btn-primary btn-lg mt-8">Say Hello</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>Designed & Built for Phạm Văn Tùng</p>
+        <p class="footer-small">© 2026. All rights reserved.</p>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="./js/main.js"></script>
+</body>
+</html>

@@ -29,7 +29,7 @@ document.querySelectorAll('a, .btn, .project-card').forEach(el => {
 });
 
 // --- Typewriter Effect ---
-const words = ["Backend Developer.", "Java Enthusiast.", "Problem Solver.", "Software Engineer."];
+const words = ["Backend Developer.", "FPT University Student.", "Java Enthusiast.", "Software Engineer."];
 let i = 0;
 let timer;
 

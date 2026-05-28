@@ -265,4 +265,59 @@ window.addEventListener('DOMContentLoaded', () => {
         duration: 1000,
         delay: anime.stagger(200)
     }, '-=600');
+
+    // --- GitHub Dodge Effect ---
+    const githubLink = document.getElementById('github-link');
+    let dodgeCount = 0;
+    const taunts = [
+        "Too slow! 😂",
+        "Missed me! 😜",
+        "Is that all you got? 🐢",
+        "Try harder! 🤡",
+        "Oops, over here! 🏃‍♂️",
+        "You're not even trying! 🥱",
+        "Catch me if you can! 💨",
+        "Still too slow! 🐌",
+        "Almost got it... Not! 🤪",
+        "Fine, I'll let you click me now. 🙄"
+    ];
+
+    const tauntTooltip = document.createElement('div');
+    tauntTooltip.className = 'taunt-tooltip';
+    document.body.appendChild(tauntTooltip);
+
+    if (githubLink) {
+        githubLink.addEventListener('mouseenter', () => {
+            if (dodgeCount === 0) {
+                const rect = githubLink.getBoundingClientRect();
+                githubLink.style.position = 'fixed';
+                githubLink.style.left = rect.left + 'px';
+                githubLink.style.top = rect.top + 'px';
+                githubLink.style.zIndex = '9999';
+                githubLink.style.transition = 'all 0.2s ease-out';
+            }
+
+            if (dodgeCount < 10) {
+                const safeWidth = window.innerWidth - 100;
+                const safeHeight = window.innerHeight - 100;
+                const newLeft = Math.max(20, Math.random() * safeWidth);
+                const newTop = Math.max(20, Math.random() * safeHeight);
+
+                githubLink.style.left = newLeft + 'px';
+                githubLink.style.top = newTop + 'px';
+
+                tauntTooltip.textContent = taunts[dodgeCount];
+                tauntTooltip.style.left = (newLeft + 40) + 'px';
+                tauntTooltip.style.top = (newTop - 20) + 'px';
+                tauntTooltip.style.opacity = '1';
+
+                clearTimeout(tauntTooltip.timeout);
+                tauntTooltip.timeout = setTimeout(() => {
+                    tauntTooltip.style.opacity = '0';
+                }, 1500);
+
+                dodgeCount++;
+            }
+        });
+    }
 });

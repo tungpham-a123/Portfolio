@@ -829,3 +829,20 @@ footer {
         display: none; /* Hide cat on mobile to save space */
     }
 }
+
+/* --- Taunt Tooltip --- */
+.taunt-tooltip {
+    position: fixed;
+    background: #ff4757;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    pointer-events: none;
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
+}
